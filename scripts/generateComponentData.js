@@ -48,12 +48,11 @@ function generate(paths) {
   const componentData = getDirectories(paths.components).map(function(componentName) {
     try {
       return getComponentData(paths, componentName);
-      
     } catch (error) {
       errors.push(`An error occurred while atempting to generate metadata for ${componentName}. ${error}`);
     }
-    writeFile(paths.output, `module.exports = ${JSON.stringify(errors.length ? errors: componentData)}`);
   });
+  writeFile(paths.output, `module.exports = ${JSON.stringify(errors.length ? errors: componentData)}`);
 }
 
 function getComponentData(paths, componentName) {
